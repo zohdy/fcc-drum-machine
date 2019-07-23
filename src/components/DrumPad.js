@@ -46,25 +46,23 @@ function DrumPad({ sampleData, changeSample, volume, power }) {
   };
 
   return (
-    <div className={`Pad-wrapper ${power ? "on" : "off"}`}>
-      <button
-        id={name}
-        className={`drum-pad ${padActive ? "active" : ""}`}
-        onClick={handleClick}
-        ref={button}
+    <button
+      id={name}
+      className={`drum-pad ${padActive ? "active" : ""}`}
+      onClick={handleClick}
+      ref={button}
+      disabled={!power}
+    >
+      <audio
+        ref={audio}
+        className="clip"
+        id={trigger}
+        src={url}
+        preload="auto"
         disabled={!power}
-      >
-        <audio
-          ref={audio}
-          className="clip"
-          id={trigger}
-          src={url}
-          preload="auto"
-          disabled={!power}
-        />
-        {trigger}
-      </button>
-    </div>
+      />
+      {trigger}
+    </button>
   );
 }
 
